@@ -1,0 +1,59 @@
+{
+  "name": "@acryl/signature-generator",
+  "version": "6.0.1-a",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "src",
+    "libs"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@types/crypto-js": "^3.1.43",
+    "@acryl/bignumber": "0.0.3",
+    "@acryl/data-entities": "^2.0.0",
+    "base64-js": "1.3.0",
+    "crypto-js": "3.1.9-1"
+  },
+  "scripts": {
+    "postversion": "npm publish",
+    "prepare": "npm run build",
+    "test": "jest",
+    "compile": "tsc -p ./",
+    "prepublish": "npm run test",
+    "uglify": "npm run uglify-full && npm run uglify-partial",
+    "uglify-full": "node_modules/.bin/uglifyjs dist/signature-generator.js -o dist/signature-generator.min.js",
+    "uglify-partial": "node_modules/.bin/uglifyjs dist/signature-generator.partial.js -o dist/signature-generator.partial.min.js",
+    "build-full": "node_modules/.bin/browserify dist/index.js -s acrylSignatureGenerator --node -o dist/signature-generator.js",
+    "build-partial": "node_modules/.bin/browserify dist/index.js -u @acryl/bignumber -u @acryl/data-entities --node -s acrylSignatureGenerator -o dist/signature-generator.partial.js",
+    "build": "npm run compile && npm run build-full && npm run build-partial && npm run uglify"
+  },
+  "jest": {
+    "collectCoverage": false,
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "testMatch": [
+      "**/test/**/*.test.+(ts|js)"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "browserify": "^16.2.2",
+    "jest": "^24.9.0",
+    "ts-jest": "^23.10.4",
+    "typescript": "^3.1.6",
+    "uglify-js": "^3.4.7"
+  }
+}
