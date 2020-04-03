@@ -56,7 +56,7 @@ export const enum DATA_TRANSACTION_FIELD_TYPES {
     STRING
 }
 
-export const ACRYL_ID = 'WAVES';
+export const ACRYL_ID = 'ACRYL';
 export const ACRYL_BLOCKCHAIN_ID = '';
 
 export const MAINNET_BYTE: number = 'A'.charCodeAt(0);

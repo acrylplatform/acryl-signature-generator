@@ -99,7 +99,7 @@ const byteToAssetId = (bytes, start) => {
     const shift = 33;
     const isAcryl = !bytes[start];
     if (isAcryl) {
-        return { shift: 1, value: 'WAVES' };
+        return { shift: 1, value: 'ACRYL' };
     }
     const { value } = byteToBase58(bytes, start + 1);
     return { shift, value };
